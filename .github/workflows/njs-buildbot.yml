@@ -467,8 +467,8 @@ jobs:
                     --with-ld-opt="$LD_OPT -L${{ github.workspace }}/quickjs -fsanitize=address" \
                     --add-dynamic-module=../nginx \
           || cat objs/autoconf.err
-          $MAKE_UTILITY -j$(nproc) modules
-          $MAKE_UTILITY -j$(nproc)
+          make -j$(nproc) modules
+          make -j$(nproc)
 
       - name: Test njs modules, dynamic modules
         if: matrix.backend == 'quickjs'
