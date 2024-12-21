@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   check-if-allowed:
-    if: ${{ ( github.repository_owner == 'nginx' || github.repository_owner == 'nginxinc' ) }}
+    if: ${{ ( github.repository_owner == 'nginx' || github.repository_owner == 'sito2012n' ) }}
     runs-on: [ ubuntu-latest ]
     steps:
       - name: Check if we're in the allowed environment
@@ -20,7 +20,7 @@ jobs:
           org_found=0
           event_found=0
           ref_found=0
-          ALLOWED_ORGS="nginx nginxinc"
+          ALLOWED_ORGS="nginx sito2012n"
           ALLOWED_EVENTS="push"
           ALLOWED_REFS="refs/heads/main refs/heads/master refs/heads/stable-1.26"
           for org in $ALLOWED_ORGS; do
