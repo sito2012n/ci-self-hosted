@@ -13,7 +13,7 @@ defaults:
 jobs:
   check-if-allowed:
     if: ${{ ( github.repository_owner == 'nginx' || github.repository_owner == 'sito2012n' ) }}
-    runs-on: [ ubuntu-latest ]
+    runs-on: [ ubuntu-22.04 ]
     steps:
       - name: Check if we're in the allowed environment
         run: |
@@ -40,7 +40,7 @@ jobs:
 
   generic:
     name: ${{ matrix.os }}, ${{ matrix.subarch != '' && matrix.subarch || matrix.arch }} ${{ matrix.sanitizer != '' && matrix.sanitizer || '' }}
-    runs-on: [ "${{ matrix.os }}-${{ matrix.arch }}" ]
+    runs-on: [ ubuntu-22.04 ]
     needs: check-if-allowed
     strategy:
       matrix:
@@ -50,18 +50,6 @@ jobs:
         arch: [arm64]
         subarch: [ '' ]
         sanitizer: [ '' ]
-        exclude:
-          - os: freebsd-14 # we don't have an arm64 builder for freebsd-14 yet
-            arch: arm64
-          - os: sles-15 # we don't have an arm64 builder for sles-15 yet
-            arch: arm64
-        include:
-          - os: debian-12
-            arch: amd64
-            subarch: x86
-          - os: ubuntu-22.04
-            arch: amd64
-            sanitizer: asan
       fail-fast: false
 
     steps:
