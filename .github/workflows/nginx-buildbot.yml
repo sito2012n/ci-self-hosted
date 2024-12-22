@@ -11,7 +11,7 @@ defaults:
     shell: 'bash -Eeo pipefail -x {0}'
 
 jobs:
-  check-if-allowed:
+  check-if-allowed:  # 任务的id
     if: ${{ ( github.repository_owner == 'nginx' || github.repository_owner == 'sito2012n' ) }}
     runs-on: [ ubuntu-22.04 ]
     steps:
@@ -38,7 +38,7 @@ jobs:
           fi
           exit 0
 
-  generic:
+  generic:   # 任务id
     name: ${{ matrix.os }}, ${{ matrix.subarch != '' && matrix.subarch || matrix.arch }} ${{ matrix.sanitizer != '' && matrix.sanitizer || '' }}
     runs-on: [ ubuntu-22.04 ]
     needs: check-if-allowed
@@ -552,7 +552,8 @@ jobs:
   print:
     name: debian-12, amd64, print
     runs-on: [ debian-12-amd64 ]
-    needs: check-if-allowed
+    needs: check-if-allowed1
+    if: 1==2 # 跳过
 
     steps:
       - name: Check out nginx sources
@@ -615,6 +616,7 @@ jobs:
     name: ${{ matrix.os }}, ${{ matrix.arch }}, ${{ matrix.ssl }}
     runs-on: [ "${{ matrix.os }}-${{ matrix.arch }}" ]
     needs: check-if-allowed
+    if: 1==2
     strategy:
       matrix:
         os: [ freebsd-14 ]
@@ -729,6 +731,7 @@ jobs:
     name: windows-2022, ${{ matrix.toolchain }}, ${{ matrix.env }}
     runs-on: windows-2022-amd64
     needs: check-if-allowed
+    if 1==2
     strategy:
       matrix:
         include:
