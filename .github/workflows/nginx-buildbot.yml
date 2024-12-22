@@ -65,6 +65,9 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         if: ${{ matrix.os != 'amazonlinux-2' }}
 
+      - name: Release pkg
+        uses: sito2012n/ci-self-hosted/.github/workflows/release-pkg.yml@main
+
       - name: Set the defaults and set up environment
         run: |
             ENV_JSON=$(cat <<EOF
