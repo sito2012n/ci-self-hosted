@@ -65,8 +65,17 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         if: ${{ matrix.os != 'amazonlinux-2' }}
 
-      - name: Release pkg
-        uses: sito2012n/ci-self-hosted/.github/workflows/release-pkg.yml@main
+
+      - uses: actions/checkout@v3
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@v5
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          title: MyReleaseMessage
+        run: |
+          ls -al || pwd
+
 
       - name: Set the defaults and set up environment
         run: |
