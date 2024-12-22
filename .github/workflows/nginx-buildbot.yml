@@ -299,6 +299,9 @@ jobs:
         # newer kernels using leading to random crashes: https://reviews.llvm.org/D148280
         run: sudo sysctl vm.mmap_rnd_bits=28
 
+      - name: mkdir-build
+        run: mkdir build
+
       - name: Configure and build std
         run: |
           ./auto/configure \
