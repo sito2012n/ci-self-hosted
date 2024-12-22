@@ -55,7 +55,7 @@ jobs:
     steps:
       - name: install app
         run: |
-            sudo apt install libpcre3-dev zlib1g-dev libssl-dev libxslt-dev libgd-dev
+            sudo apt install libpcre3-dev zlib1g-dev libssl-dev libxslt-dev libgd-dev libgeoip-dev
 
       - name: Check out nginx sources
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
