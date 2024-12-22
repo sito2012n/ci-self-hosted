@@ -731,7 +731,7 @@ jobs:
     name: windows-2022, ${{ matrix.toolchain }}, ${{ matrix.env }}
     runs-on: windows-2022-amd64
     needs: check-if-allowed
-    if 1==2
+    if: 1==2
     strategy:
       matrix:
         include:
