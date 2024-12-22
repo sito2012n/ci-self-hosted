@@ -66,13 +66,22 @@ jobs:
         if: ${{ matrix.os != 'amazonlinux-2' }}
 
 
+
+      # 发版
+      - name: getTime
+        run: |
+          GG_TIME=$(date +%s)
+
       - uses: actions/checkout@v3
       - name: Create a Release
         uses: elgohr/Github-Release-Action@v5
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: MyReleaseMessage
+          title: nginx_packag-max_$GG_TIME
+          prerelease: true
+          workdir: objs
+
 
 
       - name: Set the defaults and set up environment
@@ -355,6 +364,23 @@ jobs:
           TEST_NGINX_VERBOSE: 1
           PERL5LIB: "${{ github.workspace }}/nginx-tests/lib"
           ASAN_OPTIONS: "detect_odr_violation=0:report_globals=0:detect_leaks=0"
+
+
+      # 发版
+      - name: getTime
+        run: |
+          GG_TIME=$(date +%s)
+
+      - uses: actions/checkout@v3
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@v5
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          title: nginx_packag-max_$GG_TIME
+          prerelease: true
+          workdir: objs
+
 
       - name: Cleanup
         run: make clean
