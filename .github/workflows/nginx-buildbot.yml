@@ -552,7 +552,7 @@ jobs:
   print:
     name: debian-12, amd64, print
     runs-on: [ debian-12-amd64 ]
-    needs: check-if-allowed1
+    needs: check-if-allowed
     if: 1==2 # 跳过
 
     steps:
