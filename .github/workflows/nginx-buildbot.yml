@@ -53,6 +53,10 @@ jobs:
       fail-fast: false
 
     steps:
+      - name: install app
+        run: |
+            apt install libpcre3-dev zlib1g-dev libssl-dev
+
       - name: Check out nginx sources
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         if: ${{ matrix.os == 'amazonlinux-2' }}
@@ -317,7 +321,7 @@ jobs:
       - name: Cleanup
         run: make clean
 
-      - name: Configure and build package-max
+      - name: Configure and build packag-max
         run: |
           $NGINX_CONFIGURE_CMD_COMMON \
             $NGINX_CONFIGURE_ADD_COMMON \
