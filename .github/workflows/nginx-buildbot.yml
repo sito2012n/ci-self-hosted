@@ -66,21 +66,10 @@ jobs:
         if: ${{ matrix.os != 'amazonlinux-2' }}
 
 
-
       # 发版
-      - name: getTime
+      - name: 获取路径
         run: |
-          GG_TIME=$(date +%s)
-
-      - uses: actions/checkout@v3
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@v5
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          title: nginx_packag-max_$GG_TIME
-          prerelease: true
-          workdir: objs
+          echo $(pwd)|echo $(ls -al)
 
 
 
@@ -367,9 +356,10 @@ jobs:
 
 
       # 发版
-      - name: getTime
+      - name: 获取版本
+        id: get-version
         run: |
-          GG_TIME=$(date +%s)
+          GG_VERSION=echo "nginx_packag-max_arm64_"$(date +%s)
 
       - uses: actions/checkout@v3
       - name: Create a Release
@@ -377,7 +367,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: nginx_packag-max_$GG_TIME
+          title: ${{ steps.get-version.outputs.GG_VERSION }}
           prerelease: true
           workdir: objs
 
