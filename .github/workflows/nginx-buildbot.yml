@@ -374,7 +374,7 @@ jobs:
         with:
           title: ${{ steps.get-version.outputs.GG_VERSION }}
           prerelease: true
-          workdir: /home/runner/work/nginx/nginx/objs
+          #workdir: /home/runner/work/nginx/nginx/objs
 
 
       - name: Cleanup
