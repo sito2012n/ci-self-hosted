@@ -66,19 +66,6 @@ jobs:
         if: ${{ matrix.os != 'amazonlinux-2' }}
 
 
-      # 发版
-      - name: 获取路径
-        run: |
-          echo $(pwd)|echo $(ls -al)
-
-
-      # 发版
-      - name: 获取版本
-        id: get-version1
-        run: |
-          echo "GG_VERSION=$(echo "nginx_packag-max_arm64_"$(date +%s))" >> $GITHUB_OUTPUT
-    
-
 
       - name: Set the defaults and set up environment
         run: |
@@ -381,7 +368,7 @@ jobs:
         with:
           title: ${{ steps.get-version.outputs.GG_VERSION }}
           prerelease: true
-          workdir: objs
+          workdir: ./objs
 
 
       - name: Cleanup
