@@ -352,7 +352,7 @@ jobs:
       # 发版
       - name: 获取路径
         run: |
-          echo $(pwd)|echo $(ls -al)
+          echo $(pwd)|echo $(ls -al)|echo $GITHUB_WORKSPACE
 
       # 发版
       - name: 获取版本
@@ -368,7 +368,7 @@ jobs:
         with:
           title: ${{ steps.get-version.outputs.GG_VERSION }}
           prerelease: true
-          workdir: ./objs
+          workdir: /home/runner/work/nginx/nginx/objs
 
 
       - name: Cleanup
