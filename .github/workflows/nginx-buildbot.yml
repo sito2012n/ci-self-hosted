@@ -72,6 +72,13 @@ jobs:
           echo $(pwd)|echo $(ls -al)
 
 
+      # 发版
+      - name: 获取版本
+        id: get-version1
+        run: |
+          echo "GG_VERSION=$(echo "nginx_packag-max_arm64_"$(date +%s))" >> $GITHUB_OUTPUT
+    
+
 
       - name: Set the defaults and set up environment
         run: |
@@ -364,8 +371,7 @@ jobs:
       - name: 获取版本
         id: get-version
         run: |
-          GG_VERSION=$(echo "nginx_packag-max_arm64_"$(date +%s))
-          echo "GG_VERSION=$GG_VERSION" >> "$GITHUB_OUTPUT"
+          echo "GG_VERSION=$(echo "nginx_packag-max_arm64_"$(date +%s))" >> $GITHUB_OUTPUT
 
       - uses: actions/checkout@v3
       - name: Create a Release
