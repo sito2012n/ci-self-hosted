@@ -373,8 +373,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           title: ${{ steps.get-version.outputs.GG_VERSION }}
-          prerelease: true
-          workdir: objs
+          #prerelease: true
+          #workdir: objs
 
 
       - name: Cleanup
