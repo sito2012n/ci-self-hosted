@@ -358,7 +358,7 @@ jobs:
       # 发版
       - name: 获取路径
         run: |
-          echo $(pwd)|echo $(ls -al)
+          echo $(pwd)|echo $(ls -al)|echo $(ls -a objs)
 
       # 发版
       - name: 获取版本
