@@ -65,7 +65,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create --generate-notes --target stable-1.26 -t nginx_packag-max_arm64 ght.tar.gz
+          gh release create --generate-notes  -t nginx_packag-max_arm64 ght.tar.gz
 
 
       # 发版
