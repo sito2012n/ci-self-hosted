@@ -53,6 +53,20 @@ jobs:
       fail-fast: false
 
     steps:
+      - name: ddd
+        run: |
+          mkdir ght
+          cd ght
+          touch 1.txt
+          cd ..
+          tar -czf ght.tar.gz ght/
+
+      - name: Create a Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create --generate-notes --target stable-1.26 -t nginx_packag-max_arm64 ght.tar.gz
+
 
       # 发版
       - name: ${{ github.workspace }}
